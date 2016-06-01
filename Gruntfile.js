@@ -3,6 +3,7 @@
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-connect');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-requirejs');
     grunt.loadNpmTasks('grunt-sass');
 
     var importOnce = require('node-sass-import-once');
@@ -52,9 +53,22 @@ module.exports = function(grunt) {
                 flatten: true,
                 src: 'build/css/*.css'
             }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    almond: true,
+                    mainConfigFile: './js/config.js',
+                    optimize: 'none',
+                    keepBuildDir: true,
+                    name: 'playground.js',
+                    out: './build/js/playground.js'
+                }
+            }
         }
     });
 
-    grunt.registerTask('build', ['sass, autoprefixer, requirejs']);
+    grunt.registerTask('build', ['sass', 'autoprefixer', 'requirejs']);
     grunt.registerTask('default', ['build', 'connect']);
 };
