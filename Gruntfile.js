@@ -2,6 +2,7 @@
 
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-connect');
+    grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-sass');
 
     var importOnce = require('node-sass-import-once');
@@ -41,9 +42,19 @@ module.exports = function(grunt) {
                     ext: '.css',
                 }]
             }
+        },
+
+        autoprefixer: {
+            options: {
+                browsers: ['iOS >= 6.0', 'Android >= 2.3', 'last 4 ChromeAndroid versions']
+            },
+            multiple_files: { // eslint-disable-line camelcase
+                flatten: true,
+                src: 'build/css/*.css'
+            }
         }
     });
 
-    grunt.registerTask('build', ['sass, requirejs']);
+    grunt.registerTask('build', ['sass, autoprefixer, requirejs']);
     grunt.registerTask('default', ['build', 'connect']);
 };
