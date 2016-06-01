@@ -5,6 +5,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-requirejs');
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-sass-lint');
+    grunt.loadNpmTasks('grunt-eslint');
 
     var importOnce = require('node-sass-import-once');
 
@@ -66,9 +68,26 @@ module.exports = function(grunt) {
                     out: './build/js/playground.js'
                 }
             }
+        },
+
+        eslint: {
+            dev: {
+                src: ['src/**/*.js'],
+                options: {
+                    reset: true,
+                    config: require.resolve('mobify-code-style/javascript/.eslintrc')
+                }
+            }
+        },
+
+        sasslint: {
+            options: {
+                configFile: require.resolve('mobify-code-style/css/.sass-lint.yml')
+            },
+            target: ['src/**/*.scss']
         }
     });
 
-    grunt.registerTask('build', ['sass', 'autoprefixer', 'requirejs']);
+    grunt.registerTask('build', ['eslint', 'sasslint', 'sass', 'autoprefixer', 'requirejs']);
     grunt.registerTask('default', ['build', 'connect']);
 };
