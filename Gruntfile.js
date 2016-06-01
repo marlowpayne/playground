@@ -34,7 +34,7 @@ module.exports = function(grunt) {
             dev: {
                 files: [{
                     expand: true,
-                    cwd: 'sass/',
+                    cwd: 'src/sass/',
                     src: [
                         '**/*.scss',
                         '!node_modules/**/*.scss'
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     almond: true,
-                    mainConfigFile: './js/config.js',
+                    mainConfigFile: './src/js/config.js',
                     optimize: 'none',
                     keepBuildDir: true,
                     name: 'playground.js',
