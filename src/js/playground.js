@@ -17,29 +17,28 @@ function(
     var $clearStickyHeader = $('.js-clear-sticky-header');
     var $clearStickyFooter = $('.js-clear-sticky-footer');
 
+    var $headerTriggers = $('.js-header-sticky');
+    var $footerTriggers = $('.js-footer-sticky');
+
     var $fixedStickyHeaderTrigger = $('.js-header-sticky__fixed-sticky');
     var $fixedStickyFooterTrigger = $('.js-footer-sticky__fixed-sticky');
     var $jqueryStickyHeaderTrigger = $('.js-header-sticky__stickyjs');
     var $jqueryStickyFooterTrigger = $('.js-footer-sticky__stickyjs');
 
     var _hideHeaderTriggers = function() {
-        $jqueryStickyHeaderTrigger.attr('hidden', true);
-        $fixedStickyHeaderTrigger.attr('hidden', true);
+        $headerTriggers.attr('hidden', true);
     };
 
     var _hideFooterTriggers = function() {
-        $jqueryStickyFooterTrigger.attr('hidden', true);
-        $fixedStickyFooterTrigger.attr('hidden', true);
+        $footerTriggers.attr('hidden', true);
     };
 
     var _showHeaderTriggers = function() {
-        $jqueryStickyHeaderTrigger.removeAttr('hidden');
-        $fixedStickyHeaderTrigger.removeAttr('hidden');
+        $headerTriggers.removeAttr('hidden');
     };
 
     var _showFooterTriggers = function() {
-        $jqueryStickyFooterTrigger.removeAttr('hidden');
-        $fixedStickyFooterTrigger.removeAttr('hidden');
+        $footerTriggers.removeAttr('hidden');
     };
 
     var _bindFixedSticky = function() {

@@ -21,3 +21,11 @@
 .fixedsticky.fixedsticky__footer {
     bottom: 0;
 }
+
+// Playground styles
+// ---
+
+.playground-header,
+.playground-footer {
+    z-index: $stage-layer;
+}
