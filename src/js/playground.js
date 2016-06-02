@@ -42,32 +42,58 @@ function(
             $jqueryStickyHeaderTrigger.attr('hidden', true);
             $jqueryStickyFooterTrigger.attr('hidden', true);
         });
+    };
 
+    var _bindJquerySticky = function() {
+        $jqueryStickyHeaderTrigger.on('click', function(e) {
+            e.preventDefault();
+            $header.sticky({
+                topSpacing: 0
+            });
+            $clearStickyHeader.removeAttr('hidden');
 
-        // Clearing bindings
+            $fixedStickyHeaderTrigger.attr('hidden', true);
+            $fixedStickyFooterTrigger.attr('hidden', true);
+        });
+
+        $jqueryStickyFooterTrigger.on('click', function(e) {
+            e.preventDefault();
+            $footer.sticky({
+                bottomSpacing: 0
+            });
+            $clearStickyFooter.removeAttr('hidden');
+
+            $fixedStickyHeaderTrigger.attr('hidden', true);
+            $fixedStickyFooterTrigger.attr('hidden', true);
+        });
+    };
+
+    var _bindStickyClearing = function() {
         $clearStickyHeader.on('click', function(e) {
             e.preventDefault();
-            $header.removeClass();
+            $header.removeClass('fixedsticky fixedsticky__header');
             $header.fixedsticky('destroy');
+            $header.unstick();
             $clearStickyHeader.attr('hidden', true);
 
             $jqueryStickyHeaderTrigger.removeAttr('hidden');
             $jqueryStickyFooterTrigger.removeAttr('hidden');
+            $fixedStickyHeaderTrigger.removeAttr('hidden');
+            $fixedStickyFooterTrigger.removeAttr('hidden');
         });
 
         $clearStickyFooter.on('click', function(e) {
             e.preventDefault();
-            $footer.removeClass();
+            $footer.removeClass('fixedsticky fixedsticky__footer');
             $footer.fixedsticky('destroy');
+            $header.unstick();
             $clearStickyFooter.attr('hidden', true);
 
             $jqueryStickyHeaderTrigger.removeAttr('hidden');
             $jqueryStickyFooterTrigger.removeAttr('hidden');
+            $fixedStickyHeaderTrigger.removeAttr('hidden');
+            $fixedStickyFooterTrigger.removeAttr('hidden');
         });
-    };
-
-    var _bindJquerySticky = function() {
-
     };
 
     var _playgroundUI = function() {
@@ -75,6 +101,7 @@ function(
 
         _bindFixedSticky();
         _bindJquerySticky();
+        _bindStickyClearing();
     };
 
     $(function() { // doc ready
