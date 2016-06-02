@@ -22,6 +22,26 @@ function(
     var $jqueryStickyHeaderTrigger = $('.js-header-sticky__stickyjs');
     var $jqueryStickyFooterTrigger = $('.js-footer-sticky__stickyjs');
 
+    var _hideHeaderTriggers = function() {
+        $jqueryStickyHeaderTrigger.attr('hidden', true);
+        $fixedStickyHeaderTrigger.attr('hidden', true);
+    };
+
+    var _hideFooterTriggers = function() {
+        $jqueryStickyFooterTrigger.attr('hidden', true);
+        $fixedStickyFooterTrigger.attr('hidden', true);
+    };
+
+    var _showHeaderTriggers = function() {
+        $jqueryStickyHeaderTrigger.removeAttr('hidden');
+        $fixedStickyHeaderTrigger.removeAttr('hidden');
+    };
+
+    var _showFooterTriggers = function() {
+        $jqueryStickyFooterTrigger.removeAttr('hidden');
+        $fixedStickyFooterTrigger.removeAttr('hidden');
+    };
+
     var _bindFixedSticky = function() {
         $fixedStickyHeaderTrigger.on('click', function(e) {
             e.preventDefault();
@@ -29,8 +49,7 @@ function(
             $header.fixedsticky();
             $clearStickyHeader.removeAttr('hidden');
 
-            $jqueryStickyHeaderTrigger.attr('hidden', true);
-            $jqueryStickyFooterTrigger.attr('hidden', true);
+            _hideHeaderTriggers();
         });
 
         $fixedStickyFooterTrigger.on('click', function(e) {
@@ -39,8 +58,7 @@ function(
             $footer.fixedsticky();
             $clearStickyFooter.removeAttr('hidden');
 
-            $jqueryStickyHeaderTrigger.attr('hidden', true);
-            $jqueryStickyFooterTrigger.attr('hidden', true);
+            _hideFooterTriggers();
         });
     };
 
@@ -52,8 +70,7 @@ function(
             });
             $clearStickyHeader.removeAttr('hidden');
 
-            $fixedStickyHeaderTrigger.attr('hidden', true);
-            $fixedStickyFooterTrigger.attr('hidden', true);
+            _hideHeaderTriggers();
         });
 
         $jqueryStickyFooterTrigger.on('click', function(e) {
@@ -63,8 +80,7 @@ function(
             });
             $clearStickyFooter.removeAttr('hidden');
 
-            $fixedStickyHeaderTrigger.attr('hidden', true);
-            $fixedStickyFooterTrigger.attr('hidden', true);
+            _hideFooterTriggers();
         });
     };
 
@@ -76,10 +92,7 @@ function(
             $header.unstick();
             $clearStickyHeader.attr('hidden', true);
 
-            $jqueryStickyHeaderTrigger.removeAttr('hidden');
-            $jqueryStickyFooterTrigger.removeAttr('hidden');
-            $fixedStickyHeaderTrigger.removeAttr('hidden');
-            $fixedStickyFooterTrigger.removeAttr('hidden');
+            _showHeaderTriggers();
         });
 
         $clearStickyFooter.on('click', function(e) {
@@ -89,10 +102,7 @@ function(
             $header.unstick();
             $clearStickyFooter.attr('hidden', true);
 
-            $jqueryStickyHeaderTrigger.removeAttr('hidden');
-            $jqueryStickyFooterTrigger.removeAttr('hidden');
-            $fixedStickyHeaderTrigger.removeAttr('hidden');
-            $fixedStickyFooterTrigger.removeAttr('hidden');
+            _showFooterTriggers();
         });
     };
 
