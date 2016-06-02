@@ -1,1 +1,13 @@
+// Reset styles
 @import 'reset';
+
+// Fixed-sticky styles
+@import 'fixed-sticky/fixedsticky.css';
+
+.fixedsticky.fixedsticky__header {
+    top: 0;
+}
+
+.fixedsticky.fixedsticky__footer {
+    bottom: 0;
+}
