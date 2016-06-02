@@ -1,12 +1,13 @@
 'use strict';
 
 module.exports = function(grunt) {
-    grunt.loadNpmTasks('grunt-connect');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-requirejs');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-sass-lint');
     grunt.loadNpmTasks('grunt-eslint');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     var importOnce = require('node-sass-import-once');
 
@@ -14,7 +15,10 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         connect: {
             playground: {
-                port: 9001
+                options: {
+                    base: './',
+                    port: 9001
+                }
             }
         },
 
@@ -85,9 +89,23 @@ module.exports = function(grunt) {
                 configFile: require.resolve('mobify-code-style/css/.sass-lint.yml')
             },
             target: ['src/**/*.scss']
+        },
+
+        watch: {
+            scripts: {
+                files: ['Gruntfile.js', 'src/**/*.js'],
+                tasks: ['compile-js']
+            },
+            styles: {
+                files: ['src/**/*.scss'],
+                tasks: ['compile-sass']
+            }
         }
     });
 
-    grunt.registerTask('build', ['eslint', 'sasslint', 'sass', 'autoprefixer', 'requirejs']);
-    grunt.registerTask('default', ['build', 'connect']);
+    grunt.registerTask('compile-js', ['requirejs']);
+    grunt.registerTask('compile-sass', ['sass', 'autoprefixer']);
+    grunt.registerTask('build', ['eslint', 'sasslint', 'compile-sass', 'compile-js']);
+    grunt.registerTask('default', ['build', 'connect:playground', 'watch']);
+    grunt.registerTask('playground', 'default'); // alias
 };
