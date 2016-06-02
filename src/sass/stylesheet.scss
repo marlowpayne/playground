@@ -1,6 +1,16 @@
 // Reset styles
 @import 'reset';
 
+// Variables
+@import 'variables';
+
+// Base styles
+@import 'base/general';
+
+// Components
+@import 'components/card/card';
+@import 'components/button/button';
+
 // Fixed-sticky styles
 @import 'fixed-sticky/fixedsticky.css';
 

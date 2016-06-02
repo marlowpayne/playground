@@ -23,7 +23,7 @@ module.exports = function(grunt) {
                 outputStyle: 'expanded',
                 sourceComments: true,
                 includePaths: [
-                    'sass/',
+                    'src/sass/',
                     'node_modules/'
                 ],
                 importer: importOnce,

@@ -1,0 +1,512 @@
+// Button
+// ===
+//
+// Style an element as a button. Best applied to native interactive elements
+// such as form controls and links.
+//
+// Example Markup:
+//
+// <button class="c-button" type="[button|submit]">{buttonText}</button>
+// <input class="c-button" type="submit" value="{submitText}">
+// <a class="c-button" href="{url}">{linkText}</a>
+//
+
+
+// Button element
+// ---
+//
+// 1. Normalize border-radius across element types in iOS.
+// 2. Inherit font styles from ancestor.
+// 3. Normalize `line-height` (for `input`, it can't be changed from `normal`
+//    in Firefox 4+).
+// 4. Ensure button text can wrap (`input` defaults to `pre`).
+// 5. Prevent button text from being selectable.
+// 6. Corrects inability to style tappable `input` types in iOS.
+// 7. Inherit font color from ancestor for all states
+// 8. Create positioning context for children/generated content.
+//
+// N.B. "Disabled" state for links must be managed in JavaScript.
+
+.c-button,
+%c-button {
+    position: relative; // 8
+
+    display: inline-block;
+    min-height: $tap-size;
+    margin: 0;
+    padding: ($unit)-2 $unit*2;
+    border: 1px solid $neutral-50;
+
+    border-radius: 0; // 1
+    background: $neutral-50;
+
+    color: $white;
+    font-style: italic; // 2
+    font-size: $font-size; // 2
+    line-height: $line-height; // 3
+    white-space: normal; // 4
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    transition: 0.1s background ease-out;
+
+    user-select: none; // 5
+
+    -webkit-appearance: none; // 6
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &:focus,
+    &:active {
+        color: $white; // 7
+    }
+
+    &:active {
+        background: darken($neutral-50, 10%);
+    }
+
+
+    // Disabled
+    // ---
+    //
+    // 1. Add text colour to `disabled` attr style
+
+    &:disabled,
+    &.c--is-disabled {
+        border-color: $disabled-color;
+
+        background-color: $disabled-color;
+
+        color: $white;
+
+        pointer-events: none;
+
+        -webkit-text-fill-color: $white; // 1
+    }
+
+
+    // Loading component
+    // ---
+    //
+    // 1. Fix alignment when add small loading component in button.
+
+    .c-loading {
+        margin: 1px 0 4px; // 1
+    }
+
+    .c-loading__dot {
+        background-color: $white;
+    }
+
+    // SVG icon inside button
+    // ---
+
+    .c-icon-svg {
+        fill: currentColor;
+    }
+}
+
+
+// Themes
+// ---
+
+
+// Primary
+// ---
+
+.c-button.c--primary {
+    border-color: $brand-color;
+
+    background: $brand-color;
+
+    color: $white;
+
+    &:active {
+        background: darken($brand-color, 10%);
+    }
+
+    // Disabled
+    // ---
+
+    &:disabled,
+    &.c--is-disabled {
+        border-color: $disabled-color;
+
+        background-color: $disabled-color;
+
+        color: $white;
+    }
+}
+
+
+// Dark
+// ---
+
+.c-button.c--dark {
+    border-color: $neutral-80;
+
+    background: $neutral-80;
+
+    &:active {
+        background: $black;
+    }
+
+    // Disabled
+    // ---
+
+    &:disabled,
+    &.c--is-disabled {
+        border-color: $disabled-color;
+
+        background-color: $disabled-color;
+
+        color: $white;
+    }
+}
+
+
+// Success
+// ---
+
+.c-button.c--success {
+    border-color: $success-color;
+
+    background-color: $success-color;
+
+    &:active {
+        background: darken($success-color, 10%);
+    }
+
+    // Disabled
+    // ---
+
+    &:disabled,
+    &.c--is-disabled {
+        border-color: $disabled-color;
+
+        background-color: $disabled-color;
+
+        color: $white;
+    }
+}
+
+
+// Link
+// ---
+
+.c-button.c--link {
+    border: 1px solid transparent;
+
+    background: transparent;
+
+    color: $link-color;
+
+    &:active {
+        background: $neutral-30;
+    }
+
+    // Disabled
+    // ---
+
+    &:disabled,
+    &.c--is-disabled {
+        border: 1px solid transparent;
+
+        color: $disabled-color;
+
+        -webkit-text-fill-color: $disabled-color;
+    }
+
+
+    // Dark
+    // ---
+    &.c--dark {
+        color: $black;
+    }
+}
+
+
+// Outline
+// ---
+
+.c-button.c--outline {
+    border: 1px solid $dark-border-color;
+
+    background: transparent;
+
+    color: $font-color;
+
+    &:active {
+        background: $neutral-30;
+    }
+
+    // No sides borders
+    // ---
+
+    &.c--no-side-borders {
+        border-right: 0;
+        border-left: 0;
+    }
+
+
+    // Top border only
+    // ---
+
+    &.c--top-only {
+        border-right: 0;
+        border-bottom: 0;
+        border-left: 0;
+    }
+
+
+    // Success outline
+    // ---
+
+    &.c--success {
+        border-color: $success-color;
+
+        color: $success-color;
+    }
+
+    // Disabled
+    // ---
+
+    &:disabled,
+    &.c--is-disabled {
+        border-color: $border-color;
+
+        color: $disabled-color;
+
+        -webkit-text-fill-color: $disabled-color;
+    }
+
+    .c-loading__dot {
+        background-color: $font-color;
+    }
+}
+
+
+// Simple
+// ---
+//
+// 1. Increase tap size
+
+.c-button.c--simple {
+    position: relative; // 1
+
+    min-height: inherit;
+    padding: 0;
+    border: 1px solid transparent;
+
+    background: transparent;
+
+    color: $link-color;
+    font-style: normal;
+    text-transform: inherit;
+
+    &:active {
+        background: $neutral-30;
+    }
+
+    &::after { // 1
+        content: '';
+
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+    }
+
+    // Dark
+    // ---
+    &.c--dark {
+        color: $black;
+        font-weight: $medium-font-weight;
+    }
+
+    // Light
+    // ---
+    &.c--light {
+        color: $white;
+
+        &:active {
+            background: transparent;
+
+            color: $neutral-50;
+        }
+    }
+}
+
+// Fletch
+// ---
+//
+// The fletch button is visually similar to c-select, but its chevron arrow has
+// has been rotated. It is found primarily on the PDP.
+//
+// 1. Increase tap size
+
+.c-button.c--fletch {
+    position: relative; // 1
+
+    min-height: $small-tap-size;
+    padding: $sub-unit $horizontal-input-padding*3 $sub-unit $horizontal-input-padding;
+    border-color: $border-color;
+
+    font-style: normal;
+    font-size: $font-size;
+    text-align: left;
+    text-transform: none;
+
+    &::after { // 1
+        content: '';
+
+        position: absolute;
+        top: -4px;
+        right: 0;
+        bottom: -4px;
+        left: 0;
+    }
+
+
+    // Fletch Icon
+    // ---
+    //
+    // 1. Position icon inside select
+    // 2. Add pointer event to tap on icon to invoke button
+
+    .c-icon-svg {
+        position: absolute; // 1
+        top: 50%;
+        right: 0;
+        bottom: 0;
+
+        transform: translate(0, -50%);
+
+        pointer-events: none; // 2
+
+        fill: $neutral-50;
+    }
+}
+
+
+// Check Icon
+// ---
+//
+// Special modifier class for check icon. Had to create new svg icon
+// to match design and doesnt change button height
+//
+// 1. Align center
+
+.c-button.c--check {
+
+    .c-icon-svg {
+        width: 22px;
+        height: 22px;
+
+        margin-top: -2px; // 1
+        margin-bottom: -1px; // 1
+    }
+}
+
+
+// Info Icon
+// ---
+//
+// 1. Increase tap size
+
+.c-button.c--info {
+    position: relative; // 1
+
+    min-height: initial;
+    padding: 0;
+
+    &::after { // 1
+        content: '';
+
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+    }
+
+    .c-icon-svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+
+// Large
+// ---
+//
+
+.c-button.c--large {
+    min-height: 48px;
+
+    font-size: $large-font-size;
+}
+
+
+// Small
+// ---
+//
+// 1. Increase tap size
+
+.c-button.c--small {
+    position: relative; // 1
+
+    min-height: $small-tap-size;
+    padding: $sub-unit $unit;
+
+    font-size: $smaller-font-size;
+
+    &::after {
+        // 1
+        content: '';
+
+        position: absolute;
+        top: -4px;
+        right: 0;
+        bottom: -4px;
+        left: 0;
+    }
+}
+
+
+// Full Width
+// ---
+
+.c-button.c--full-width {
+    width: 100%;
+}
+
+
+// No Padding
+// ---
+
+.c-button.c--no-padding {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+
+// Add '+'
+// --
+
+.c-button.c--plus {
+    &::before {
+        content: '+';
+    }
+}
+
+
+// Add '-'
+// ---
+
+.c-button.c--minus {
+    &::before {
+        content: '-';
+    }
+}
