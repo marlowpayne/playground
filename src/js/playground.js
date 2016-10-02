@@ -3,14 +3,16 @@ require([
     'pinny',
     'sheet-right',
     'fixed-sticky',
-    'jquery-sticky'
+    'jquery-sticky',
+    'bellows'
 ],
 function(
     $,
     Pinny,
     sheetRight,
     FixedSticky,
-    jQuerySticky
+    jQuerySticky,
+    Bellows
 ) {
     var $header = $('.playground-header');
     var $footer = $('.playground-footer');
@@ -105,12 +107,18 @@ function(
         });
     };
 
+    var _initBellows = function() {
+        $('.bellows').bellows();
+    };
+
     var _playgroundUI = function() {
         console.log('Playground UI');
 
         _bindFixedSticky();
         _bindJquerySticky();
         _bindStickyClearing();
+
+        _initBellows();
     };
 
     $(function() { // doc ready

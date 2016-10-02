@@ -4,6 +4,7 @@ require.config({
     'keepBuildDir': true,
     'paths': {
         '$': '../../node_modules/jquery/dist/jquery',
+        'bellows': '../../node_modules/bellows-ui/dist/bellows',
         'bouncefix': '../../node_modules/pinny/node_modules/bouncefix.js/dist/bouncefix.min',
         'deckard': '../../node_modules/pinny/node_modules/deckard/dist/deckard.min',
         'event-polyfill': '../../node_modules/pinny/src/js/utils/event-polyfill',
@@ -13,11 +14,11 @@ require.config({
         'jquery-ui': '../../node_modules/jquery-ui/jquery-ui',
         'lockup': '../../node_modules/pinny/node_modules/lockup/dist/lockup.min',
         'pinny': '../../node_modules/pinny/dist/pinny.min',
-        'plugin': '../../node_modules/pinny/node_modules/plugin/dist/plugin.min',
+        'plugin': '../../node_modules/bellows-ui/node_modules/plugin/dist/plugin.min',
         'shade': '../../node_modules/pinny/node_modules/shade/dist/shade.min',
         'sheet-right': '../../node_modules/pinny/src/js/effect/sheet-right',
         'text': '../../node_modules/pinny/node_modules/text/text',
-        'velocity': '../../node_modules/pinny/node_modules/velocity-animate/velocity.min'
+        'velocity': '../../node_modules/bellows-ui/node_modules/velocity-animate/velocity.min'
     },
     'shim': {
         '$': {

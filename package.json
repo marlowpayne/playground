@@ -32,5 +32,8 @@
     "mobify-code-style": "^2.4.3",
     "node-sass-import-once": "^1.2.0",
     "pinny": "^3.0.0"
+  },
+  "devDependencies": {
+    "bellows-ui": "6.0.0"
   }
 }
